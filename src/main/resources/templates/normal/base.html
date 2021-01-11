@@ -57,7 +57,7 @@
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>   <!-- cross button -->
     
    <a href="#" th:href="@{/user/index}" class="item"><i class="fas fa-home"></i> Home</a>
-   <a href="#" class="item"><i class="fas fa-eye"></i> View Contacts</a>
+   <a href="#" th:href="@{/user/show_contacts}"><i class="fas fa-eye"></i> View Contacts</a>
    <a href="#" th:href="@{/user/add-contact}" class="item"><i class="fas fa-user-plus"></i> Add Contact</a>
    <a href="#" class="item"><i class="fas fa-user"></i> Your Profile</a>
    <a href="#" class="item"><i class="fas fa-cogs"></i> Settings</a>
@@ -73,6 +73,22 @@
     <div class="content mt-4">  
     
     <i onclick="toggleSidebar()" class="fas fa-bars m-3"></i> 
+    
+    
+    
+    <!-- message box after successfull/Unsuccessful adding contact -->
+    
+    <div th:if="${session.message}"class="container">
+    
+    <div th:classappend="${'alert-'+session.message.type}" class="alert text-center" role="alert">
+     
+     <span th:text="${session.message.content}"></span>
+     </div>
+     
+     <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+     </div>
+    
+    
     
     
     <!-- dynamic contents -->
