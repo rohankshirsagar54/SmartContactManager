@@ -23,16 +23,16 @@
 
 							<h3 class="mb-3">Change Password</h3>
 							
-							<form action="">
+							<form th:action="@{/user/change-password}" method="post">
 							
 							<!-- old password -->
 							<div class="form-group">
-							<input type="text" class="form-control" placeholder="Enter Old Password"/>
+							<input name="oldPassword" type="password" class="form-control" placeholder="Enter Old Password"/>
 							</div>
 							
 							<!-- new password -->
 							<div class="form-group">
-							<input type="text" class="form-control" placeholder="Enter New Password"/>
+							<input name="newPassword" type="password" class="form-control" placeholder="Enter New Password"/>
 							</div>
 							
 							<!-- new password -->
