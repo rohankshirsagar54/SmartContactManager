@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::Layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>About page</title>
+</head>
+
+<body>
+
+
+
+	<section>
+
+		<div class="card mr-3" th:if="${model}">
+			<div class="card-body">
+				<!-- this will work only if there is contact means not for unauthorized user  -->
+
+				<div class="conatiner text-center">
+					<img src="" style="height: 200px; width: 200px;" class="my_profile"
+						th:src="@{'/img/'+${model.image}}" />
+
+
+					<h3 class="mt-3">
+						<span th:text="${model.name}"></span> (<span
+							th:text="${model.secondName}"></span>)
+					</h3>
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#Id</th>
+								<th scope="col">SCM<span th:text="${model.cId}"></span></th>
+
+							</tr>
+
+
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Email</th>
+								<td><span th:text="${model.email}"></span></td>
+							</tr>
+
+							<tr>
+								<th scope="row">Phone</th>
+								<td><span th:text="${model.phone}"></span></td>
+							</tr>
+
+							<tr>
+								<th scope="row">Work</th>
+								<td><span th:text="${model.work}"></span></td>
+							</tr>
+
+						</tbody>
+
+
+
+					</table>
+
+					<div class="description mt-3">
+						<b>Description:</b>
+						<th:block th:text="${model.description}"></th:block>
+					</div>
+
+					<div class="conatiner mt-3">
+						<button th:onclick="|deleteContact(${model.cId})|" class="btn btn-danger btn-sm">Delete</button>
+						
+						
+						<form method="post" th:action="@{'/user/update-contact/'+${model.cId}}" class="mt-2">
+								<button type="submit" class="btn btn-success btn-sm">Update</button>
+								</form>
+					</div>
+
+				</div>
+
+			</div>
+			
+			
+			
+		</div>
+
+<h1 class="text-center p-3 bg-danger mr-4" th:unless="${model}">You dont have Permission to see this contact!!</h1>
+
+	</section>
+
+</body>
+
+</html>

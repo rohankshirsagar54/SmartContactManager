@@ -64,6 +64,14 @@ body{
 	padding-top: 45px;
 }
 
+.my_profile{
+	width:30px;
+	height: 30px;
+	object-fit:cover;
+	border-radius:50%;
+	
+}
+
 .sidebar a{
 	display: block;
 	width: 100%;
@@ -98,3 +106,24 @@ body{
 	cursor: pointer;
 }
 
+/*search results*/
+
+.search-container{
+	position: relative;
+}
+
+
+.search-result{
+	position: absolute;
+	background:white;
+	width:100%;
+	padding:10px;
+	border: 1px solid grey;
+	display:none;
+}
+
+
+.active{
+	background: #009688 !important;
+	color: white !important;
+}

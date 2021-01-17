@@ -10,6 +10,8 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
 <link rel="stylesheet" th:href="@{/css/style.css}"/>
 
     <title th:text="${title}">Base Html</title>
@@ -56,11 +58,11 @@
     
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>   <!-- cross button -->
     
-   <a href="#" th:href="@{/user/index}" class="item"><i class="fas fa-home"></i> Home</a>
-   <a href="#" th:href="@{/user/show_contacts}"><i class="fas fa-eye"></i> View Contacts</a>
-   <a href="#" th:href="@{/user/add-contact}" class="item"><i class="fas fa-user-plus"></i> Add Contact</a>
-   <a href="#" class="item"><i class="fas fa-user"></i> Your Profile</a>
-   <a href="#" class="item"><i class="fas fa-cogs"></i> Settings</a>
+   <a id="home-link" href="#" th:href="@{/user/index}" class="item active"><i class="fas fa-home"></i> Home</a>
+   <a id="contacts-link" href="#" th:href="@{/user/show_contacts/0}" class="item"><i class="fas fa-eye"></i> View Contacts</a>
+   <a id="add-link" href="#" th:href="@{/user/add-contact}" class="item"><i class="fas fa-user-plus"></i> Add Contact</a>
+   <a id="profile-link" href="#" th:href="@{/user/profile}" class="item"><i class="fas fa-user"></i> Your Profile</a>
+   <a id="setting-link" href="#" th:href="@{/user/settings}" class="item"><i class="fas fa-cogs"></i> Settings</a>
    <a href="#" th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
    <div class="divider"></div>
     
@@ -91,20 +93,50 @@
     
     
     
-    <!-- dynamic contents -->
+    <!-- dynamic contents <section> tag of other pages -->
     <div th:replace="${content}"></div>
     
     </div>
     
     <!-- Content area ends--> 
     
+    
+    
+    
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     
+     <script>
+     
+     function deleteContact(cid){
+    	 swal({
+    		  title: "Are you sure?",
+    		  text: "You want to delete this conatct!!",
+    		  icon: "warning",
+    		  buttons: true,
+    		  dangerMode: true,
+    		})
+    		.then((willDelete) => {
+    		  if (willDelete) {
+    		    window.location="/user/delete/"+cid;
+    		    
+    		  } else {
+    		    swal("Your Contact is safe!");
+    		  }
+    		});
+     }
+     
+     </script>
+     
     <script th:src="@{/js/script.js}"></script>
-  </body>
+    
+    
+   
+</body>
 </html>

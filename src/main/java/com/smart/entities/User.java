@@ -55,10 +55,11 @@ public class User {
 	@Column(name="about")
 	private String about;
 	
-	@OneToMany(cascade= CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
+	@OneToMany(cascade= CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user", orphanRemoval=true)
 	private List<Contact> contacts=new ArrayList<>();
 
-	
+	//orphanRemoval=true means whenever child entity(contact) is unlinked with parent entity(user), 
+	//then while delete it can be removed direclty
 
 	public User() {
 		super();
